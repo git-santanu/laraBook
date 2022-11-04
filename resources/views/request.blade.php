@@ -22,6 +22,7 @@
                     </div>
                 </div>
             </div>
+            @if($frReq)
             <div class="card" style="width: 18rem;">
                 @if(session()->has('msg'))
                 <p class="alert alert-success">
@@ -38,10 +39,15 @@
                     </p>
                     @else
                     <a href="/accept/{{$uList->id}}" class="btn btn-info">Confirm</a>
-                    @endif
+                    @endif 
                 </div>
                 @endforeach
             </div>
+            @else
+            <div class="card" style="width: 18rem;">
+            <p>You have'nt get friend Requests yet</p>
+            </div>
+            @endif
         </div>
         @endsection
 
