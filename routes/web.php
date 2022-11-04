@@ -27,13 +27,10 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile', [App\Http\Controllers\profileControl::class, 'index'])->name('profile');
-    Route::get('/find',[friendController::class,'findFriend']);
-    Route::get('/search',[friendController::class,'searchFriend']);
-    Route::get('/addFriend/{id}',[friendController::class,'friendReq']);
-    Route::get('/req',[friendController::class,'requestIn']);
-    Route::get('/accept/{id}',[friendController::class,'acceptFriend']);
-    
+    Route::get('/find', [friendController::class, 'findFriend']);
+    Route::get('/search', [friendController::class, 'searchFriend']);
+    Route::get('/addFriend/{id}', [friendController::class, 'friendReq']);
+    Route::get('/req', [friendController::class, 'requestIn']);
+    Route::get('/accept/{id}', [friendController::class, 'acceptFriend']);
 });
 Route::get('logout', [LoginController::class, 'logout']);
-
-

@@ -61,8 +61,8 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                            <a id="navbarDropdown" class="nav-link" href="{{ url('/') }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Hi,{{ Auth::user()->name }}
                             </a>
 
                             <!-- <a href="/find" class="btn btn-info">Find Friends</a> -->
@@ -93,6 +93,9 @@
                     </ul>
                 </div>
             </div>
+            @if(Auth::user())
+            <button class="btn btn-info"> <a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 text-light">Logout</a></button>
+            @endif
         </nav>
 
         <main class="py-4">

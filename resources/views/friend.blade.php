@@ -20,7 +20,7 @@
                     <div class="card-body">
                         {{ __('Find friends to here') }}
                         <br /><br />
-                        
+
                     </div>
                     <div class="card" style="width: 18rem;">
                         @foreach($userData as $uList)
@@ -39,7 +39,7 @@
                         </div>
                         @endforeach
                     </div>
-                
+
                 </div>
             </div>
         </div>

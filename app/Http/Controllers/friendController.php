@@ -12,7 +12,7 @@ use App\Traits\Friendable;
 
 class friendController extends Controller
 {
-    
+
     public function findFriend()
     {
         $uuid = Auth::user()->id;
@@ -21,19 +21,12 @@ class friendController extends Controller
     }
     public function searchFriend(Request $req)
     {
+        $uuid = Auth::user()->id;
         $search_text = $_GET['query'];
-        $allUsers = User::where('name','LIKE', '%'.$search_text.'%')->get();
-        return view('search',compact('allUsers'));
-        // $uData= User::search($req->name)->get();
-        // return view('search',compact('uData'));
-        // $search = $req['search'] ?? "";
-        // if ($search !== "") {
-        //     $allUsers = DB::table('users')->where('name', 'LIKE', "%$search%")->first();
-        // }else{
-        //     $allUsers= User::all();
-        // }
-        // $udata = compact('allUsers', 'search');
-        // return view('search')->with($udata);
+        $allUsers = User::where('name', 'LIKE', '%' . $search_text . '%')
+            ->where('id', '!=', $uuid)
+            ->get();
+        return view('search', compact('allUsers'));
     }
     use Friendable;
     public function friendReq($id)
@@ -60,7 +53,7 @@ class friendController extends Controller
                 ->where('requester', $id)
                 ->update(['status' => 1]);
             if ($updateFriend) {
-                return back()->with('msg', 'you arer now friend');
+                return back()->with('msg', 'you are now friend');
             }
         } else {
             echo "can not update";

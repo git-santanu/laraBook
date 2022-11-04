@@ -20,7 +20,8 @@ trait Friendable
         );
         if($friend)
         {
-            return $friend;
+            // return $friend;
+            return redirect('find');
         }else{
             return "failde to connect";
         }
