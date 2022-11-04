@@ -82,6 +82,13 @@
                         <a class="nav-link" href="/req">My Requests
                             ({{Illuminate\Support\Facades\DB::table('friendships')->where('status','=',NULL)->where('req_name',Auth::user()->id)->count()}})
                         </a>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <form type="get" action="{{url('/search')}}" class="col-9">
+                                    <input type="search" name="query" class="form-control" placeholder="Serach Friends" aria-label="Search" aria-describedby="search-addon" />
+                            </div>
+                            <button class="btn btn-info">Search Friends</button>
+                        </div>
                         @endguest
                     </ul>
                 </div>

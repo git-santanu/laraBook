@@ -18,12 +18,10 @@
                 <div class="card">
                     <div class="card-header">{{ Auth::user()->name }}</div>
                     <div class="card-body">
-                        {{ __('Find friends to here') }}
-                        <br /><br />
-                        
+                        {{ __('Search friends to here') }}
                     </div>
                     <div class="card" style="width: 18rem;">
-                        @foreach($userData as $uList)
+                        @foreach($allUsers as $uList)
                         <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{$uList->name}}</h5>
@@ -39,7 +37,6 @@
                         </div>
                         @endforeach
                     </div>
-                
                 </div>
             </div>
         </div>

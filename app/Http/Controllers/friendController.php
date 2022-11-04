@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\friendship;
 use App\Models\notifcations;
+use App\Models\User;
 use App\Traits\Friendable;
+
 class friendController extends Controller
 {
     
@@ -17,36 +19,50 @@ class friendController extends Controller
         $userData = DB::table('users')->where('id', '!=', $uuid)->get();
         return view('friend', compact('userData'));
     }
+    public function searchFriend(Request $req)
+    {
+        $search_text = $_GET['query'];
+        $allUsers = User::where('name','LIKE', '%'.$search_text.'%')->get();
+        return view('search',compact('allUsers'));
+        // $uData= User::search($req->name)->get();
+        // return view('search',compact('uData'));
+        // $search = $req['search'] ?? "";
+        // if ($search !== "") {
+        //     $allUsers = DB::table('users')->where('name', 'LIKE', "%$search%")->first();
+        // }else{
+        //     $allUsers= User::all();
+        // }
+        // $udata = compact('allUsers', 'search');
+        // return view('search')->with($udata);
+    }
     use Friendable;
     public function friendReq($id)
-    {  
+    {
         return Auth::user()->addFriend($id);
         return back();
     }
     public function requestIn()
     {
         $uuid = Auth::user()->id;
-        $frReq=DB::table('friendships')->rightJoin('users','users.id','=','friendships.requester')
-        ->where('status','=',Null)
-        ->where('friendships.req_name','=',$uuid)->get()->toArray();
-        return view('request',compact('frReq'));
+        $frReq = DB::table('friendships')->rightJoin('users', 'users.id', '=', 'friendships.requester')
+            ->where('status', '=', Null)
+            ->where('friendships.req_name', '=', $uuid)->get()->toArray();
+        return view('request', compact('frReq'));
     }
     public function acceptFriend($id)
     {
         $uuid = Auth::user()->id;
-        $getReq= DB::table('friendships')->where('requester',$id)
-        ->where('req_name',$uuid)->first();
-        if($getReq)
-        {
-          $updateFriend= DB::table('friendships')
-           ->where('req_name',$uuid)
-           ->where('requester',$id)
-           ->update(['status'=>1]);
-           if($updateFriend){
-            return back()->with('msg','you arer now friend');
-           }
-        }
-        else{
+        $getReq = DB::table('friendships')->where('requester', $id)
+            ->where('req_name', $uuid)->first();
+        if ($getReq) {
+            $updateFriend = DB::table('friendships')
+                ->where('req_name', $uuid)
+                ->where('requester', $id)
+                ->update(['status' => 1]);
+            if ($updateFriend) {
+                return back()->with('msg', 'you arer now friend');
+            }
+        } else {
             echo "can not update";
         }
     }
