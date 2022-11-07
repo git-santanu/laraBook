@@ -23,6 +23,9 @@
                 </div>
             </div>
             @if($frReq)
+            <p class="alert alert-success">
+                {{ session()->get('msg')}}
+            </p>
             <div class="card" style="width: 18rem;">
                 @if(session()->has('msg'))
                 <p class="alert alert-success">
@@ -44,15 +47,10 @@
                 @endforeach
             </div>
             @else
-            <div class="card" style="width: 18rem;">
-                <p class="alert alert-success">
-                    {{ session()->get('msg')}}
-                </p>
-            </div>
+            <p>
+            </p>
             @endif
         </div>
         @endsection
-
 </body>
-
 </html>
