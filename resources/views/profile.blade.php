@@ -25,7 +25,11 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                        <img src="{{url('/img/female.png/')}}" width="80px" height="80px" />
+                        @if (auth()->user()->gender === 'male')
+                           <img src="{{url('/img/male.png/')}}" width="80px" height="80px" />
+                        @else
+                           <img src="{{url('/img/female.png/')}}" width="80px" height="80px" />
+                        @endif
                         {{ __('Welcome to your profile !') }}
                     </div>
                 </div>

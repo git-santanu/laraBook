@@ -22,24 +22,25 @@
                         <br /><br />
 
                     </div>
-                    <div class="card" style="width: 18rem;">
-                        @foreach($userData as $uList)
-                        <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$uList->name}}</h5>
-                            <?php
-                            $check = Illuminate\Support\Facades\DB::table('friendships')->where('req_name', '=', $uList->id)
-                                ->where('requester', '=', Illuminate\Support\Facades\Auth::user()->id)->first();
-                            if ($check == '') {
-                            ?>
-                                <a href="/addFriend/{{$uList->id}}" class="btn btn-info">Add Friend</a>
-                            <?php  } else { ?>
-                                <p>Request Sent</p>
-                            <?php  } ?>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="card align-items-center justify-content-center border-0" style="width: 18rem;">
+                            @foreach($userData as $uList)
+                            <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{$uList->name}}</h5>
+                                <?php
+                                $check = Illuminate\Support\Facades\DB::table('friendships')->where('req_name', '=', $uList->id)
+                                    ->where('requester', '=', Illuminate\Support\Facades\Auth::user()->id)->first();
+                                if ($check == '') {
+                                ?>
+                                    <a href="/addFriend/{{$uList->id}}" class="btn btn-info">Add Friend</a>
+                                <?php  } else { ?>
+                                    <p>Request Sent</p>
+                                <?php  } ?>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
-
                 </div>
             </div>
         </div>

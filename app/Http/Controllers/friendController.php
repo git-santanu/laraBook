@@ -24,7 +24,7 @@ class friendController extends Controller
         $uuid = Auth::user()->id;
         $search_text = $_GET['query'];
         $allUsers = User::where('name', 'LIKE', '%' . $search_text . '%')
-            ->where('id', '!=', $uuid)
+            // ->where('id', '!=', $uuid)
             ->get();
         return view('search', compact('allUsers'));
     }
@@ -32,7 +32,6 @@ class friendController extends Controller
     public function friendReq($id)
     {
         return Auth::user()->addFriend($id);
-        return back();
     }
     public function requestIn()
     {
