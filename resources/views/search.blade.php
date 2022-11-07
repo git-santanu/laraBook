@@ -34,7 +34,8 @@
                                     <a href="/addFriend/{{$uList->id}}" class="btn btn-info ">Add Friend</a>
                                 <?php  } else { ?>
                                     <p>Request Sent</p>
-                                <?php  } ?>
+                                <?php  }
+                                ?>
                             </div>
                             @endforeach
                         </div>

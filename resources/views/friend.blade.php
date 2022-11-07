@@ -19,11 +19,26 @@
                     <div class="card-header">{{ Auth::user()->name }}</div>
                     <div class="card-body">
                         {{ __('Find friends to here') }}
+
                         <br /><br />
 
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="card align-items-center justify-content-center border-0" style="width: 18rem;">
+                            <?php
+                            $friendsS = \App\Models\User::find(1);
+                            foreach($friendsS->friends as $friends)
+                            {
+                                echo $friends->name;
+                                echo '<br>';
+                            }
+
+                            $friendsO = \App\Models\User::find(3);
+                            foreach ($friendsO->friendsOf as $friendsOF) {
+                                echo $friendsOF->name;
+                                echo '<br>';
+                            }
+                            ?>
                             @foreach($userData as $uList)
                             <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
                             <div class="card-body">

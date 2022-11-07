@@ -48,4 +48,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class);
     }
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'req_name', 'requester');
+    }
+    public function friendsOf()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'requester','req_name');
+    }
 }

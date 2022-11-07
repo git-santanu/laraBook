@@ -39,13 +39,15 @@
                     </p>
                     @else
                     <a href="/accept/{{$uList->id}}" class="btn btn-info">Confirm</a>
-                    @endif 
+                    @endif
                 </div>
                 @endforeach
             </div>
             @else
             <div class="card" style="width: 18rem;">
-            <p>You have'nt get friend Requests yet</p>
+                <p class="alert alert-success">
+                    {{ session()->get('msg')}}
+                </p>
             </div>
             @endif
         </div>

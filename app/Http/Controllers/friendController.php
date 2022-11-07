@@ -24,7 +24,7 @@ class friendController extends Controller
         $uuid = Auth::user()->id;
         $search_text = $_GET['query'];
         $allUsers = User::where('name', 'LIKE', '%' . $search_text . '%')
-            // ->where('id', '!=', $uuid)
+            ->where('id', '!=', $uuid)
             ->get();
         return view('search', compact('allUsers'));
     }
@@ -58,4 +58,14 @@ class friendController extends Controller
             echo "can not update";
         }
     }
+    // public function mutualFriends($id)
+    // {
+    //     $profile = User::where('id',$id)->first();
+    //     $profileFriends= $profile->findFriend;
+    //     $profileFriendsId= [];
+    //     foreach($profileFriends as $entry){
+    //         $profileFriendsId[] = $entry->id;
+    //     }
+    //     loggedUserFriends = Auth::user()->findFriend
+    // }
 }

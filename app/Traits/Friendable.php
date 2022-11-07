@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\friendship;
+use Illuminate\Foundation\Auth\User;
 
 trait Friendable
 {
@@ -18,12 +19,12 @@ trait Friendable
                 'req_name' => $id
             ]
         );
-        if($friend)
-        {
+        if ($friend) {
             // return $friend;
             return redirect('find');
-        }else{
+        } else {
             return "failde to connect";
         }
     }
+    
 }
