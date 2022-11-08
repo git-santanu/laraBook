@@ -25,24 +25,22 @@
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="card align-items-center justify-content-center border-0" style="width: 18rem;">
-                            <?php
-                            $friendsS = \App\Models\User::find(1);
-                            foreach($friendsS->friends as $friends)
-                            {
-                                echo $friends->name;
-                                echo '<br>';
-                            }
-
-                            $friendsO = \App\Models\User::find(3);
-                            foreach ($friendsO->friendsOf as $friendsOF) {
-                                echo $friendsOF->name;
-                                echo '<br>';
-                            }
-                            ?>
+                        
                             @foreach($userData as $uList)
+                            @if($uList->gender=='male')
                             <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
+                            @else
+                            <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{$uList->name}}</h5>
+                                <?php
+                                $mutualFriends = \App\Models\User::find(3);
+                                foreach ($mutualFriends->friendsOf as $role) {
+                                   return $role->name;
+                                }
+                                ?>
+                                
                                 <?php
                                 $check = Illuminate\Support\Facades\DB::table('friendships')->where('req_name', '=', $uList->id)
                                     ->where('requester', '=', Illuminate\Support\Facades\Auth::user()->id)->first();

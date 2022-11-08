@@ -23,18 +23,19 @@
                 </div>
             </div>
             @if($frReq)
-            <p class="alert alert-success">
-                {{ session()->get('msg')}}
-            </p>
-            <div class="card" style="width: 18rem;">
+            <div class="card align-items-center justify-content-center" style="width: 18rem;">
                 @if(session()->has('msg'))
                 <p class="alert alert-success">
                     {{ session()->get('msg')}}
                 </p>
                 @endif
                 @foreach($frReq as $uList)
+                @if($uList->gender=='male')
+                <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
+                @else
                 <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
-                <div class="card-body">
+                @endif
+                <div class="card-body ">
                     <h5 class="card-title">{{$uList->name}}</h5>
                     @if(session()->has('msg'))
                     <p>
@@ -53,4 +54,5 @@
         </div>
         @endsection
 </body>
+
 </html>

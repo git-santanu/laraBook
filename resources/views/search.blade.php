@@ -23,7 +23,11 @@
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="card align-items-center justify-content-center border-0" style="width: 18rem;">
                             @foreach($allUsers as $uList)
+                            @if($uList->gender=='male')
+                            <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 20px" alt="Card image cap">
+                            @else
                             <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 20px" alt="Card image cap">
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{$uList->name}}</h5>
                                 <?php
