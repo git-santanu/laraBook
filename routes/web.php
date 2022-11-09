@@ -32,5 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/addFriend/{id}', [friendController::class, 'friendReq']);
     Route::get('/req', [friendController::class, 'requestIn']);
     Route::get('/accept/{id}', [friendController::class, 'acceptFriend']);
+    Route::get('/friends', [friendController::class, 'myFriends']);
 });
 Route::get('logout', [LoginController::class, 'logout']);

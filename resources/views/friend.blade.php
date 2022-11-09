@@ -19,13 +19,22 @@
                     <div class="card-header">{{ Auth::user()->name }}</div>
                     <div class="card-body">
                         {{ __('Find friends to here') }}
-
+                        
+                        <!-- $profileFriends = \App\Models\User::find(1);
+                        foreach ($profileFriends->friends as $role) {
+                            print_r($role->name);
+                        }
+                        $mutualFriends = \App\Models\User::find(2);
+                        foreach ($mutualFriends->friendsOf as $role) {
+                            print_r($role->name);
+                        } -->
+                       
                         <br /><br />
 
                     </div>
                     <div class="d-flex align-items-center justify-content-center">
                         <div class="card align-items-center justify-content-center border-0" style="width: 18rem;">
-                        
+
                             @foreach($userData as $uList)
                             @if($uList->gender=='male')
                             <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
@@ -34,13 +43,8 @@
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{$uList->name}}</h5>
-                                <?php
-                                $mutualFriends = \App\Models\User::find(3);
-                                foreach ($mutualFriends->friendsOf as $role) {
-                                   return $role->name;
-                                }
-                                ?>
-                                
+
+
                                 <?php
                                 $check = Illuminate\Support\Facades\DB::table('friendships')->where('req_name', '=', $uList->id)
                                     ->where('requester', '=', Illuminate\Support\Facades\Auth::user()->id)->first();

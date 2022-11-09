@@ -58,6 +58,10 @@ class friendController extends Controller
             echo "can not update";
         }
     }
+    public function myFriends()
+    {
+        echo Auth::user()->id;
+    }
     // public function mutualFriends($id)
     // {
     //     $profile = User::where('id',$id)->first();

@@ -82,6 +82,7 @@
                         <a class="nav-link" href="/req">My Requests
                             ({{Illuminate\Support\Facades\DB::table('friendships')->where('status','=',NULL)->where('req_name',Auth::user()->id)->count()}})
                         </a>
+                        <a class="nav-link" href="/friends">My Friends</a>
                         <div class="form-inline">
                             <div class="form-group">
                                 <form type="get" action="{{url('/search')}}" class="col-9">
