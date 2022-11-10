@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            @if($frReq)
+           
             <div class="card align-items-center justify-content-center" style="width: 18rem;">
                 @if(session()->has('msg'))
                 <p class="alert alert-success">
@@ -36,7 +36,11 @@
                 <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
                 @endif
                 <div class="card-body ">
-                    <h5 class="card-title">{{$uList->name}}</h5>
+                    <h5 class="card-title">
+                    <a href="/friendProfile/{{$uList->slug}}">
+                    {{$uList->name}}
+                    </a>
+                    </h5>
                     @if(session()->has('msg'))
                     <p>
                         {{ session()->get('msg')}}
@@ -47,10 +51,8 @@
                 </div>
                 @endforeach
             </div>
-            @else
-            <p>
-            </p>
-            @endif
+            
+           
         </div>
         @endsection
 </body>

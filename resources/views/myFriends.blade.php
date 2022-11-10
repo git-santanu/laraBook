@@ -18,41 +18,42 @@
                 <div class="card">
                     <div class="card-header">{{ Auth::user()->name }}</div>
                     <div class="card-body">
-                        {{ __('Friend Requests to here') }}
+                        {{ __('Your friends') }}
+                        
+                        <!-- $profileFriends = \App\Models\User::find(1);
+                        foreach ($profileFriends->friends as $role) {
+                            print_r($role->name);
+                        }
+                        $mutualFriends = \App\Models\User::find(2);
+                        foreach ($mutualFriends->friendsOf as $role) {
+                            print_r($role->name);
+                        } -->
+                       
+                        <br /><br />
+
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="card align-items-center justify-content-center border-0" style="width: 18rem;">
+
+                            @foreach($myFriends as $uList)
+                            @if($uList->gender=='male')
+                            <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
+                            @else
+                            <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
+                            @endif
+                            <div class="card-body">
+                                <a href="/friendProfile/{{$uList->slug}}"><h5 class="card-title">{{$uList->name}}</h5></a>
+                                <p>Friend</p>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-            @if($frReq)
-            <div class="card align-items-center justify-content-center" style="width: 18rem;">
-                @if(session()->has('msg'))
-                <p class="alert alert-success">
-                    {{ session()->get('msg')}}
-                </p>
-                @endif
-                @foreach($frReq as $uList)
-                @if($uList->gender=='male')
-                <img class="card-img-top" src="{{url('/img/male.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
-                @else
-                <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
-                @endif
-                <div class="card-body ">
-                    <h5 class="card-title">{{$uList->name}}</h5>
-                    @if(session()->has('msg'))
-                    <p>
-                        {{ session()->get('msg')}}
-                    </p>
-                    @else
-                    <a href="/accept/{{$uList->id}}" class="btn btn-info">Confirm</a>
-                    @endif
-                </div>
-                @endforeach
-            </div>
-            @else
-            <p>
-            </p>
-            @endif
         </div>
-        @endsection
+    </div>
+    @endsection
+
 </body>
 
 </html>

@@ -42,7 +42,7 @@
                             <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
                             @endif
                             <div class="card-body">
-                                <h5 class="card-title">{{$uList->name}}</h5>
+                                <a href="/friendProfile/{{$uList->slug}}"><h5 class="card-title">{{$uList->name}}</h5></a>
 
 
                                 <?php

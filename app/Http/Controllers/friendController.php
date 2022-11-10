@@ -60,7 +60,22 @@ class friendController extends Controller
     }
     public function myFriends()
     {
-        echo Auth::user()->id;
+        $uuid=Auth::user()->id;
+
+        $frRequester =DB::table('friendships')
+        ->leftJoin('users','users.id','friendships.req_name')
+        ->where('status',1)
+        ->where('requester',$uuid)
+        ->get();
+
+        $frReqby = DB::table('friendships')
+        ->leftJoin('users','users.id','friendships.requester')
+        ->where('status',1)
+        ->where('req_name',$uuid)
+        ->get();
+        $myFriends = array_merge($frRequester->toArray(),$frReqby->toArray());
+        // dd($myFriends);
+        return view('myFriends',compact('myFriends'));
     }
     // public function mutualFriends($id)
     // {

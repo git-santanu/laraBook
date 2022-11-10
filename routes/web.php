@@ -27,6 +27,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile', [App\Http\Controllers\profileControl::class, 'index'])->name('profile');
+    Route::get('/friendProfile/{slug}', [App\Http\Controllers\profileControl::class, 'profileFrnd']);
     Route::get('/find', [friendController::class, 'findFriend']);
     Route::get('/search', [friendController::class, 'searchFriend']);
     Route::get('/addFriend/{id}', [friendController::class, 'friendReq']);
