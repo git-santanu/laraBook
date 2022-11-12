@@ -47,6 +47,7 @@
                     </p>
                     @else
                     <a href="/accept/{{$uList->id}}" class="btn btn-info">Confirm</a>
+                    <a href="/remove/{{$uList->id}}" class="btn btn-danger">Remove</a>
                     @endif
                 </div>
                 @endforeach

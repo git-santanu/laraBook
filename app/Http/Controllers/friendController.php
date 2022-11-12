@@ -77,7 +77,16 @@ class friendController extends Controller
         // dd($myFriends);
         return view('myFriends',compact('myFriends'));
     }
-    // public function mutualFriends($id)
+    public function removeFriend($id)
+    {
+        DB::table('friendships')
+        ->where('req_name',Auth::user()->id)
+        ->where('requester',$id)
+        ->delete();
+        return back()->with('msg','Request has been removed');
+    }
+}
+// public function mutualFriends($id)
     // {
     //     $profile = User::where('id',$id)->first();
     //     $profileFriends= $profile->findFriend;
@@ -87,4 +96,3 @@ class friendController extends Controller
     //     }
     //     loggedUserFriends = Auth::user()->findFriend
     // }
-}
