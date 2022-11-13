@@ -48,6 +48,9 @@
             </div>
         </div>
     </div>
+    <div class="d-flex align-items-center justify-content-center mt-2">
+        {{$allUsers->links()}}
+    </div>
     @endsection
 
 </body>

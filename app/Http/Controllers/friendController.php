@@ -16,7 +16,7 @@ class friendController extends Controller
     public function findFriend()
     {
         $uuid = Auth::user()->id;
-        $userData = DB::table('users')->where('id', '!=', $uuid)->get();
+        $userData = DB::table('users')->where('id', '!=', $uuid)->paginate(3);
         return view('friend', compact('userData'));
     }
     public function searchFriend(Request $req)
@@ -25,7 +25,7 @@ class friendController extends Controller
         $search_text = $_GET['query'];
         $allUsers = User::where('name', 'LIKE', '%' . $search_text . '%')
             ->where('id', '!=', $uuid)
-            ->get();
+            ->paginate(3);
         return view('search', compact('allUsers'));
     }
     use Friendable;
@@ -85,14 +85,14 @@ class friendController extends Controller
         ->delete();
         return back()->with('msg','Request has been removed');
     }
-}
-// public function mutualFriends($id)
+    // public function mutualFriends($id)
     // {
-    //     $profile = User::where('id',$id)->first();
-    //     $profileFriends= $profile->findFriend;
-    //     $profileFriendsId= [];
-    //     foreach($profileFriends as $entry){
-    //         $profileFriendsId[] = $entry->id;
-    //     }
-    //     loggedUserFriends = Auth::user()->findFriend
+    //    $fr1= DB::table('friendships')
+    //     ->where('req_name',Auth::user()->id)
+    //     ->where(['status'=>1])->get();
+
+    //     $fr2=DB::table('friendships')
+    //     ->where('requester',Auth::user()->id)
+    //     ->where(['status'=>1])->get();
     // }
+}

@@ -19,7 +19,7 @@
                     <div class="card-header">{{ Auth::user()->name }}</div>
                     <div class="card-body">
                         {{ __('Find friends to here') }}
-                        
+
                         <!-- $profileFriends = \App\Models\User::find(1);
                         foreach ($profileFriends->friends as $role) {
                             print_r($role->name);
@@ -28,7 +28,7 @@
                         foreach ($mutualFriends->friendsOf as $role) {
                             print_r($role->name);
                         } -->
-                       
+
                         <br /><br />
 
                     </div>
@@ -42,7 +42,9 @@
                             <img class="card-img-top" src="{{url('/img/female.png/')}}" style="width: 80px; height: 80px; margin: 25px" alt="Card image cap">
                             @endif
                             <div class="card-body">
-                                <a href="/friendProfile/{{$uList->slug}}"><h5 class="card-title">{{$uList->name}}</h5></a>
+                                <a href="/friendProfile/{{$uList->slug}}">
+                                    <h5 class="card-title">{{$uList->name}}</h5>
+                                </a>
 
 
                                 <?php
@@ -61,6 +63,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center mt-2">
+        {{$userData->links()}}
     </div>
     @endsection
 
