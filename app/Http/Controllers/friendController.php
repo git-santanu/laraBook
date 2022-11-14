@@ -12,7 +12,7 @@ use App\Traits\Friendable;
 
 class friendController extends Controller
 {
-
+    use Friendable;
     public function findFriend()
     {
         $uuid = Auth::user()->id;
@@ -28,7 +28,7 @@ class friendController extends Controller
             ->paginate(3);
         return view('search', compact('allUsers'));
     }
-    use Friendable;
+    
     public function friendReq($id)
     {
         return Auth::user()->addFriend($id);
@@ -60,21 +60,25 @@ class friendController extends Controller
     }
     public function myFriends()
     {
-        $uuid=Auth::user()->id;
+        // return Auth::user()->myFriends();
+        // $uuid=Auth::user()->id;
 
-        $frRequester =DB::table('friendships')
-        ->leftJoin('users','users.id','friendships.req_name')
-        ->where('status',1)
-        ->where('requester',$uuid)
-        ->get();
+        // $frRequester =DB::table('friendships')
+        // ->leftJoin('users','users.id','friendships.req_name')
+        // ->where('status',1)
+        // ->where('requester',$uuid)
+        // ->get();
 
-        $frReqby = DB::table('friendships')
-        ->leftJoin('users','users.id','friendships.requester')
-        ->where('status',1)
-        ->where('req_name',$uuid)
-        ->get();
-        $myFriends = array_merge($frRequester->toArray(),$frReqby->toArray());
+        // $frReqby = DB::table('friendships')
+        // ->leftJoin('users','users.id','friendships.requester')
+        // ->where('status',1)
+        // ->where('req_name',$uuid)
+        // ->get();
+        // $myFriends = array_merge($frRequester->toArray(),$frReqby->toArray());
         // dd($myFriends);
+        logger(Auth::user()->id);
+        $myFriends = $this->friends(Auth::user()->id);
+        logger($myFriends);
         return view('myFriends',compact('myFriends'));
     }
     public function removeFriend($id)
@@ -87,12 +91,14 @@ class friendController extends Controller
     }
     // public function mutualFriends($id)
     // {
-    //    $fr1= DB::table('friendships')
-    //     ->where('req_name',Auth::user()->id)
-    //     ->where(['status'=>1])->get();
-
-    //     $fr2=DB::table('friendships')
-    //     ->where('requester',Auth::user()->id)
-    //     ->where(['status'=>1])->get();
+    //     $profile = User::where('id', $id)->first();
+    //     $profileFriends = $profile->$this->friends();
+    //     $profileFriendsIds = [];
+    //       foreach ($profileFriends as $entry){
+    //         $profileFriendsIds[] = $entry->id;
+    //        }
+    //     $loggedUserFriends = Auth::user()->friends->whereIn('id', $profileFriendsIds);
+    //     // return $loggedUserFriends;
+    //     return view('friendProfile',compact('loggedUserFriends'));
     // }
 }
